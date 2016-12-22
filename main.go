@@ -9,9 +9,9 @@ import (
 func main() {
 	argStrings := os.Args[1:]
 	numArgs := len(argStrings)
-	argInts := make([]int, numArgs)
+	argInts := make([]float64, numArgs)
 	for i := 0; i < numArgs; i++ {
-		num, err := strconv.Atoi(argStrings[i])
+		num, err := strconv.ParseFloat(argStrings[i], 64)
 		if err != nil {
 			panic(err)
 		}
@@ -21,7 +21,7 @@ func main() {
 	fmt.Println(sorted)
 }
 
-func mergesort(arr []int) []int {
+func mergesort(arr []float64) []float64 {
 	if len(arr) == 0 || len(arr) == 1 {
 		return arr
 	}
@@ -29,8 +29,8 @@ func mergesort(arr []int) []int {
 	return merge(mergesort(arr[:halfway]), mergesort(arr[halfway:]))
 }
 
-func merge(a []int, b []int) []int {
-	result := make([]int, len(a)+len(b))
+func merge(a []float64, b []float64) []float64 {
+	result := make([]float64, len(a)+len(b))
 	i := 0
 	j := 0
 	for k := 0; k < len(a)+len(b); k++ {
